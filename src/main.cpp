@@ -159,9 +159,10 @@ void makeKaffe()
         
         std::this_thread::sleep_for(std::chrono::milliseconds(randd));
     }
-
+    objKva.machEinKaffe(rand() % 300, rand() % 100);
     std::cout << ">";
-    std::cout << "\n\n";    
+    std::cout << "\n\n";
+    main();    
 }
 
 void makeCapuccino()
@@ -174,6 +175,8 @@ void makeCapuccino()
         fflush(stdout);
         std::this_thread::sleep_for(std::chrono::milliseconds(randd));
     }
+    objKva.machEinCapuccino(rand() % 300, rand() % 180);
     std::cout << ">";
     std::cout << "\n\n";
+    main();
 }

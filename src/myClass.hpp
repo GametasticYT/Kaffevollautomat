@@ -9,6 +9,19 @@ public:
         this->bohnenMenge = in_bohnenMenge;
     }
 
+    void machEinKaffe(int wassermenge, int bohnenmenge)
+    {
+        this->wasserstand = this->wasserstand - wassermenge;
+        this->bohnenMenge = this->bohnenMenge - bohnenmenge;
+    }
+
+    void machEinCapuccino(int wassermenge, int bohnenmenge)
+    {
+        this->wasserstand = this->wasserstand - wassermenge;
+        this->bohnenMenge = this->bohnenMenge - bohnenmenge;
+    }
+
+
     void wasserNachfuellen(int in_wasserstand)
     {
         if ((in_wasserstand + this->wasserstand) <= this->max_wasserstand)
