@@ -1,3 +1,3 @@
-#include "globalobj.h"
+#include "globalObj.h"
 
 cl_KaffeVollautomat objKva();

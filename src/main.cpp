@@ -2,18 +2,21 @@
 #include <thread>
 #include <chrono>
 
-//#include "myClass.hpp"
-#include "globalObj.h"
+#include "myClass.hpp"
+// #include "globalObj.h"
+
 
 void bohneNachfuellen();
 void wasserNachfuellen();
-void makeKaffe(short groesse, int bohnenBehaelter, int wasserBehaelter);
-void makeCappucino(short groesse, int bohnenBehaelter, int wasserBehaelter);
+void makeKaffe();
+void makeCappucino();
 short settings();
 
+cl_KaffeVollautomat objKva(500, 300);
 
 int main()
 {
+    system("clear");
     // cl_KaffeVollautomat objKva(500, 300);
     short userSelection;
     
@@ -35,7 +38,7 @@ int main()
     switch (userSelection)
     {
     case 1:
-        makeKaffe(1, 500, 300);
+        makeKaffe();
         break;
     case 2:
         std::cout << "Cappucino wird ausgegeben!\n\n";
@@ -50,13 +53,20 @@ int main()
 
 short settings()
 {
+    int temp;
     int usrIn;
+    system("clear");
     std::cout << "\033[1;34;4mEinstellung:\033[0m\n\n";
-    std::cout << "\033[1m[\033[31m1\033[37m] Wasser nachfüllen\033[0m\n";
-    std::cout << "\033[1m[\033[31m2\033[37m] Bohnen nachfüllen\033[0m\n\n";
+    std::cout << "\033[1;37m[\033[31m1\033[37m] Wasser nachfüllen\033[0m\n";
+    std::cout << "\033[1;37m[\033[31m2\033[37m] Bohnen nachfüllen\033[0m\n";
+    std::cout << "\033[1;37m[\033[31m3\033[37m] Wasserstand anzeigen\033[0m\n";
+    std::cout << "\033[1;37m[\033[31m4\033[37m] BohnenStand anzeigen\033[0m\n";
+    std::cout << "\033[1;37m[\033[31m5\033[37m] Zurück\033[0m\n\n";
+    
+
     std::cout << "> ";
     std::cin >> usrIn;
-    if (usrIn < 1 || usrIn > 2)
+    if (usrIn < 1 || usrIn > 5)
     {
         std::cout << "Nicht unterstützte Funktion!\n";
         return 3;
@@ -65,12 +75,56 @@ short settings()
     {
         case 1:
             wasserNachfuellen();
+            break;
         case 2:
             bohneNachfuellen();
+            break;
+        case 3:
+            std::cout << "\033[1;37mLiter:\033[0m " << objKva.getWasserstand() << "\n\n";
+            for (int i = 5; i > 0; i--)
+            {
+                std::cout << "\r" << i;
+                fflush(stdout);
+                std::this_thread::sleep_for(std::chrono::seconds(1));
+            }
+            settings();
+            break;
+        case 4:
+            std::cout << "\033[1;37mBohnen im Behälter:\033[0m " << objKva.getBohnenMenge() << std::endl;
+            for (int i = 5; i > 0; i--)
+            {
+                std::cout << "\r" << i;
+                fflush(stdout);
+                std::this_thread::sleep_for(std::chrono::seconds(1));
+            }
+            settings();
+            break;
+        case 5:
+            system("clear");
+            main();
+            break;
         default:
             break;
     }
     return usrIn;
+}
+
+void wasserNachfuellen()
+{
+    int in_wasser;
+    std::cout << "\033[1;34;4mWie viele Liter Wasser sollen nachgefüllt werden?\033[0m\n\n";
+    std::cout << "> ";
+    std::cin >> in_wasser;
+
+    if (in_wasser < 0)
+    {
+        std::cout << "\n\nGarnicht gut! Du kannst nicht einfach Wasser aus dem Fach heraus holen!";
+        system("clear");
+        main();
+    } else {
+        objKva.wasserNachfuellen(in_wasser);
+        settings();
+    }
 }
 
 void bohneNachfuellen()
@@ -87,22 +141,39 @@ void bohneNachfuellen()
         main();
     } else
     {
-        
+        objKva.bohnenNachfuelle(in_bohnen);
+        settings();
     }
-    
-    
 }
 
-void makeKaffe(short groesse, int bohnenBehaelter, int wasserBehaelter)
+void makeKaffe()
 {
     //cl_KaffeVollautomat objKva(500, 300);
     std::cout << "\033[1m[\033[31mIhr Kaffe wird jetzt zubereitet, bitte Warten!\033[0m]\n\n";
-    for (int i = 100; i > 0; i--)
+    for (int i = 47; i > 0; i--)
     {
-        //int randd = rand() % 100;
-        //std::cout << ". ";
-
-        std::this_thread::sleep_for(std::chrono::milliseconds(10));
+        int randd = rand() % 500;
+        std::cout << "-";
+        fflush(stdout);
+        
+        
+        std::this_thread::sleep_for(std::chrono::milliseconds(randd));
     }
+
+    std::cout << ">";
     std::cout << "\n\n";    
+}
+
+void makeCapuccino()
+{
+    std::cout << "\033[1m[\033[31mIhr Kaffe wird jetzt zubereitet, bitte Warten!\033[0m]\n\n";
+    for (int i = 47; i > 0; i--)
+    {
+        int randd = rand() % 500;
+        std::cout << "-";
+        fflush(stdout);
+        std::this_thread::sleep_for(std::chrono::milliseconds(randd));
+    }
+    std::cout << ">";
+    std::cout << "\n\n";
 }
