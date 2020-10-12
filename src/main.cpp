@@ -2,7 +2,8 @@
 #include <thread>
 #include <chrono>
 
-#include "myClass.hpp"
+//#include "myClass.hpp"
+#include "globalObj.h"
 
 void bohneNachfuellen();
 void wasserNachfuellen();
@@ -63,6 +64,8 @@ short settings()
     switch (usrIn)
     {
         case 1:
+            wasserNachfuellen();
+        case 2:
             bohneNachfuellen();
         default:
             break;
@@ -92,7 +95,7 @@ void bohneNachfuellen()
 
 void makeKaffe(short groesse, int bohnenBehaelter, int wasserBehaelter)
 {
-    cl_KaffeVollautomat objKva(500, 300);
+    //cl_KaffeVollautomat objKva(500, 300);
     std::cout << "\033[1m[\033[31mIhr Kaffe wird jetzt zubereitet, bitte Warten!\033[0m]\n\n";
     for (int i = 100; i > 0; i--)
     {
