@@ -4,6 +4,16 @@
 
 #include "myClass.hpp"
 
+#if defined(WIN32) || defined(_WIN32) || defined(__WIN32__) || defined(__NT__)
+    const std::string OS = "win";
+#elif __linux__
+    const std::string OS = "linux";
+#elif __unix__
+    const std::string OS = "unix";
+#else
+#   error "Unknown Compiler"
+#endif
+
 void bohneNachfuellen();
 void wasserNachfuellen();
 void makeKaffe();
@@ -12,9 +22,22 @@ short settings();
 
 cl_KaffeVollautomat objKva(500, 300);
 
+void clearScreen()
+{
+    if(OS == "win")
+    {
+        system("cls");
+    } else if (OS == "linux" || OS == "unix")
+    {
+        system("clear");
+    }
+}
+
+
 int main()
 {
-    system("clear");
+    
+    clearScreen();
     // cl_KaffeVollautomat objKva(500, 300);
     short userSelection;
 
@@ -41,7 +64,7 @@ int main()
 
     std::cout << "\033[0m> ";
     std::cin >> userSelection;
-    system("clear");
+    clearScreen();
     if (userSelection > 4 || userSelection < 1)
     {
         if (objKva.getLang() == "de")
@@ -78,7 +101,7 @@ short settings()
 {
     int temp;
     int usrIn;
-    system("clear");
+    clearScreen();
 
     if (objKva.getLang() == "de")
     {
@@ -165,8 +188,8 @@ short settings()
         if (objKva.getLang() == "de")
         {
             std::cout << "\033[1;37mBitte Länder-code eingeben (2 Buchstaben)\n\033[0m";
-            std::cout << "[1;37m[\033[31men\033[37m]\n";
-            std::cout << "[1;37m[\033[31mde\033[37m]\n\n";
+            std::cout << "\033[1;37m[\033[31men\033[37m]\n";
+            std::cout << "\033[1;37m[\033[31mde\033[37m]\n\n";
         }
         else if (objKva.getLang() == "en")
         {
@@ -181,7 +204,7 @@ short settings()
         settings();
         break;
     case 6:
-        system("clear");
+        clearScreen();
         main();
         break;
     default:
@@ -192,7 +215,7 @@ short settings()
 
 void wasserNachfuellen()
 {
-    system("clear");
+    clearScreen();
     int in_wasser;
     if (objKva.getLang() == "de")
     {
@@ -208,7 +231,7 @@ void wasserNachfuellen()
 
     if (in_wasser < 0)
     {
-        system("clear");
+        clearScreen();
         if (objKva.getLang() == "de")
         {
             std::cout << "\n\nGarnicht gut! Du kannst nicht einfach Wasser aus dem Fach heraus holen!\n\n";
@@ -224,7 +247,7 @@ void wasserNachfuellen()
             fflush(stdout);
             std::this_thread::sleep_for(std::chrono::seconds(1));
         }
-        system("clear");
+        clearScreen();
         settings();
     }
     else
@@ -236,7 +259,7 @@ void wasserNachfuellen()
 
 void bohneNachfuellen()
 {
-    system("clear");
+    clearScreen();
     int in_bohnen;
     if (objKva.getLang() == "de")
     {
@@ -251,7 +274,7 @@ void bohneNachfuellen()
 
     if (in_bohnen < 0)
     {
-        system("clear");
+        clearScreen();
         if (objKva.getLang() == "de")
         {
             std::cout << "\n\nGarnicht gut! Du kannst nicht in das Bohnenfach greifen und welche Rausholen!\n\n";
@@ -267,7 +290,7 @@ void bohneNachfuellen()
             fflush(stdout);
             std::this_thread::sleep_for(std::chrono::seconds(1));
         }
-        system("clear");
+        clearScreen();
         settings();
     }
     else
