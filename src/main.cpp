@@ -3,13 +3,12 @@
 #include <chrono>
 
 #include "myClass.hpp"
-// #include "globalObj.h"
 
 
 void bohneNachfuellen();
 void wasserNachfuellen();
 void makeKaffe();
-void makeCappucino();
+void makeCappuccino();
 short settings();
 
 cl_KaffeVollautomat objKva(500, 300);
@@ -25,11 +24,12 @@ int main()
 
     std::cout << "\033[1m[\033[31m1\033[37m] Kaffe\n";
     std::cout << "\033[1m[\033[31m2\033[37m] Cappucino\n";
-    std::cout << "\033[1m[\033[31m3\033[37m] Einstellungen\n\n";
+    std::cout << "\033[1m[\033[31m3\033[37m] Einstellungen\n";
+    std::cout << "\033[1m[\033[31m4\033[37m] Exit\n\n";
     std::cout << "\033[0m> ";
     std::cin >> userSelection;
     system("clear");
-    if(userSelection > 3 || userSelection < 1)
+    if(userSelection > 4 || userSelection < 1)
     {
         std::cout << "Nicht unterstützte Eingabe, bitte erneut versuchen!";
         return 2;
@@ -41,11 +41,13 @@ int main()
         makeKaffe();
         break;
     case 2:
-        std::cout << "Cappucino wird ausgegeben!\n\n";
+        makeCappuccino();
         break;
     case 3:
         settings();
         break;
+    case 4:
+        return 5;
     default:
         break;
     }
@@ -60,7 +62,7 @@ short settings()
     std::cout << "\033[1;37m[\033[31m1\033[37m] Wasser nachfüllen\033[0m\n";
     std::cout << "\033[1;37m[\033[31m2\033[37m] Bohnen nachfüllen\033[0m\n";
     std::cout << "\033[1;37m[\033[31m3\033[37m] Wasserstand anzeigen\033[0m\n";
-    std::cout << "\033[1;37m[\033[31m4\033[37m] BohnenStand anzeigen\033[0m\n";
+    std::cout << "\033[1;37m[\033[31m4\033[37m] Bohnenstand anzeigen\033[0m\n";
     std::cout << "\033[1;37m[\033[31m5\033[37m] Zurück\033[0m\n\n";
     
 
@@ -165,7 +167,7 @@ void makeKaffe()
     main();    
 }
 
-void makeCapuccino()
+void makeCappuccino()
 {
     std::cout << "\033[1m[\033[31mIhr Kaffe wird jetzt zubereitet, bitte Warten!\033[0m]\n\n";
     for (int i = 47; i > 0; i--)
