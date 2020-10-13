@@ -297,9 +297,28 @@ void makeKaffe()
 
         std::this_thread::sleep_for(std::chrono::milliseconds(randd));
     }
+
     objKva.machEinKaffe(rand() % 300, rand() % 100);
     std::cout << ">";
+
     std::cout << "\n\n";
+    std::cout << "    (  )   (   )  )" << std::endl;
+    std::cout << "     ) (   )  (  (" << std::endl;
+    std::cout << "     ( )  (    ) )" << std::endl;
+    std::cout << "     _____________" << std::endl;
+    std::cout << "    <_____________> ___" << std::endl;
+    std::cout << "    |             |/ _ \\" << std::endl;
+    std::cout << "    |               | | |" << std::endl;
+    std::cout << "    |               |_| |" << std::endl;
+    std::cout << " ___|             |\\___/" << std::endl;
+    std::cout << "/    \\___________/    \\" << std::endl;
+    std::cout << "\\_____________________/" << std::endl;
+    for (int i = 5; i > 0; i--)
+    {
+        std::cout << "\r" << i;
+        fflush(stdout);
+        std::this_thread::sleep_for(std::chrono::seconds(1));
+    }
     main();
 }
 
@@ -324,5 +343,22 @@ void makeCappuccino()
     objKva.machEinCapuccino(rand() % 300, rand() % 180);
     std::cout << ">";
     std::cout << "\n\n";
+    std::cout << "    (  )   (   )  )" << std::endl;
+    std::cout << "     ) (   )  (  (" << std::endl;
+    std::cout << "     ( )  (    ) )" << std::endl;
+    std::cout << "     _____________" << std::endl;
+    std::cout << "    <_____________> ___" << std::endl;
+    std::cout << "    |             |/ _ \\" << std::endl;
+    std::cout << "    |               | | |" << std::endl;
+    std::cout << "    |               |_| |" << std::endl;
+    std::cout << " ___|             |\\___/" << std::endl;
+    std::cout << "/    \\___________/    \\" << std::endl;
+    std::cout << "\\_____________________/" << std::endl;
+    for (int i = 5; i > 0; i--)
+    {
+        std::cout << "\r" << i;
+        fflush(stdout);
+        std::this_thread::sleep_for(std::chrono::seconds(1));
+    }
     main();
 }
